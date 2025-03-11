@@ -8,13 +8,27 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-image: url('background.jpg');
+            box-sizing: border-box;
+        }
+
+        html, body {
+            overflow: hidden;
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: url('background.jpg') no-repeat center center fixed;
             background-size: cover;
             color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             text-align: center;
         }
 
@@ -24,6 +38,8 @@
             position: fixed;
             width: 100%;
             top: 0;
+            left: 0;
+            z-index: 1000;
         }
 
         nav ul {
@@ -44,15 +60,33 @@
             font-weight: bold;
         }
 
-        section {
-            padding: 100px 0;
-        }
-
         .container {
             background: rgba(0, 0, 0, 0.5);
             padding: 20px;
             display: inline-block;
             border-radius: 10px;
+        }
+
+        section {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #profil {
+            background: rgba(0, 0, 0, 0.5);
+            left: 0;
+        }
+
+        #jadwal {
+            background: rgba(0, 0, 0, 0.7);
+            left: 100%;
+            transition: left 0s;
         }
 
         img {
@@ -63,9 +97,9 @@
         }
 
         table {
-            width: 80%;
-            margin: auto;
-            background: rgba(255, 255, 255, 0.8);
+            width: 90%;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.9);
             color: black;
             border-collapse: collapse;
         }
@@ -74,6 +108,11 @@
             padding: 10px;
             border: 1px solid black;
             text-align: center;
+        }
+
+        th {
+            background: #333;
+            color: white;
         }
 
         .btn {
@@ -96,8 +135,8 @@
 
     <nav>
         <ul>
-            <li><a href="#profil">Home</a></li>
-            <li><a href="#jadwal">Jadwal</a></li>
+            <li><a href="#" onclick="showProfil()">Home</a></li>
+            <li><a href="#" onclick="showJadwal()">Jadwal</a></li>
         </ul>
     </nav>
 
@@ -109,7 +148,7 @@
             <p><strong>NPM:</strong> 2317051039</p>
             <p><strong>Jurusan:</strong> Ilmu Komputer</p>
             <p><strong>Universitas:</strong> Universitas Lampung</p>
-            <button class="btn" onclick="scrollToJadwal()">Lihat Jadwal</button>
+            <button class="btn" onclick="showJadwal()">Lihat Jadwal</button>
         </div>
     </section>
 
@@ -173,8 +212,14 @@
     </section>
 
     <script>
-        function scrollToJadwal() {
-            document.getElementById("jadwal").scrollIntoView({ behavior: 'smooth' });
+        function showJadwal() {
+            document.getElementById('profil').style.left = "-100%";
+            document.getElementById('jadwal').style.left = "0";
+        }
+
+        function showProfil() {
+            document.getElementById('profil').style.left = "0";
+            document.getElementById('jadwal').style.left = "100%";
         }
     </script>
 
